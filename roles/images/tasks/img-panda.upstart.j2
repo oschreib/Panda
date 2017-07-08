@@ -1,0 +1,11 @@
+description "img-panda"
+
+start on (filesystem)
+stop on runlevel [016]
+
+respawn
+setuid vagrant
+setgid vagrant
+chdir /home/vagrant/images-app
+
+exec bash -c 'FLASK_APP=/home/vagrant/images-app/images-app.py /usr/local/bin/flask run -p 8080'

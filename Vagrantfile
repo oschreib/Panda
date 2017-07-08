@@ -24,6 +24,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a base machine 
   config.vm.define "base" do |base|
+      #Port img-panda
       base.vm.network :forwarded_port, host: 8080, guest: 8080
+      #Port smart-panda
+      base.vm.network :forwarded_port, host: 8090, guest: 8090
   end
 end

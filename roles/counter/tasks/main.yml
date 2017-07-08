@@ -1,0 +1,17 @@
+---
+- name: Install dependencies
+  become: yes
+  apt: pkg=python-pip state=installed
+
+- name: install flask with pip
+  pip: name=flask
+
+- name: copy counter app
+  copy: src=counter-app dest=/home/vagrant/ owner=vagrant group=vagrant mode=0755
+
+- name: Copy Upstart configuration
+  template: src=smart-panda.upstart.j2 dest=/etc/init/smart-panda.conf
+
+- name: Validating that server is running
+  service: name=smart-panda state=started
+
